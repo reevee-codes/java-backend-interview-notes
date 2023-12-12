@@ -1,2 +1,6 @@
-# java-backend-notes
-Java backend developer notes, free to use.
+# Java Backend Notes
+- ---------------------------------
+<h3>Core Java</h3>
+- **Generics**<br>
+- **Streams**
+- **Lambda expressions**
