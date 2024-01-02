@@ -3,10 +3,12 @@
 - ---------------------------------
 <h3>Core Java</h3>
 
+- **Array**<br>
+- Starts on 0, but length is normal, so for indexes 0, 1, 2 your length of array 3
 - **Generics**<br>
 
--
-    - **Anonymous classes**<br>
+- **Autoboxing Unboxing**<br>
+- **Anonymous classes**<br>
 - They enable you to declare and instantiate a class at the same time. They are like local classes except that they do not have a name. Use them if you need to use a local class only once.
 - While local classes are class declarations, anonymous classes are expressions, which means that you define the class in another expression.
 - **Functional programming**<br>
@@ -24,7 +26,12 @@
   than listing the steps to achieve it
 - **Lambda expressions**<br>
 - Lambda expressions let you express instances of single-method classes.
-  -- **Streams**
+-  external variables used inside a lambda must be effectively final (Forcing the variable to be final avoids giving the impression that modifying the variable inside the lambda could actually modify the method parameter + concurrency issues)<br>
+   `Supplier<Integer> incrementer(int start) {`\
+   `return () -> start++;`\
+   `}`\
+   The lambda is capturing the value of start, meaning making a copy of it. Forcing the variable to be final avoids giving the impression that incrementing start inside the lambda could actually modify the start method parameter.
+- **Streams**
 - **Optional**<br>
   may or may not contain a non-null value. If a value is present,
   `isPresent()` will return true and get() will return the value<br>
@@ -39,16 +46,32 @@
 - Data members in the class must be declared as final<br>
 - A parameterized constructor should initialize all the fields performing a deep copy so that data members can’t be modified with an object reference <br>
   Deep Copy of objects should be performed in the getter methods to return a copy<br>
+- **Effectively final**<br>
+In Java 8, all variables are final by default.<br>
+`int variable = 123;`<br>
+Any variable that is assigned once and only once, is "effectively final".
 - --------------------------------------------------------
-<h3>Spring</h3>
+<h3>Spring</h3><br>
+- **Bean scopes**<br>
+- **Filters**<br>
+<h3>Internet</h3>
+- **What are the things present in HTTP response?**<br>
+-  HTTP response: contains a status line, a header ( a request message can use headers to indicate it's preferred media formats, while a response can use header to indicate the media format of the returned body), and a message body
+- **How to get HTTPS certificate**<br>
+1. Create a private and public key pair, and prepare a Certificate Signing Request (CSR), including information about the organization and the public key. <br>
+2. Contact a certification authority and request an HTTPS certificate, based on the CSR.<br>
+- **How does HTTPS work?**<br>
+1. When you enter a URL, the server of that website sends its public key and a certificate to your browser.
+2. communication over secure SSL/TLS connection
+3. Even if the packets are intercepted, they will come across as nonsensical characters
+4. Decryption: The private key on the server-side is used for the decryption of the data that has been encrypted by the public key
 - **How to make class immutable?**<br>
 - **How to make class immutable?**<br>
 - **How to make class immutable?**<br>
 - **How to make class immutable?**<br>
 - **How to make class immutable?**<br>
-- **How to make class immutable?**<br>
-- **How to make class immutable?**<br>
-- **How to make class immutable?**<br>
-- **How to make class immutable?**<br>
-- **How to make class immutable?**<br>
-- **How to make class immutable?**<br>
+- **Check prime number**<br>
+  `public boolean isPrime(int number) {`<br>
+  `BigInteger bigInt = BigInteger.valueOf(number);`<br>
+  `return bigInt.isProbablePrime(100);`<br>
+  `}`<br>
