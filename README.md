@@ -53,6 +53,14 @@ Any variable that is assigned once and only once, is "effectively final".
 - --------------------------------------------------------
 <h3>Spring</h3><br>
 - **Bean scopes**<br>
+- singleton - (Default) Scopes a single bean definition to a single object instance for each
+  Spring IoC container<br>
+- prototype - Scopes a single bean definition to any number of object instances.<br>
+- request - Scopes a single bean definition to any number of object instances.<br>
+- session - Scopes a single bean definition to the lifecycle of an HTTP Session. Only valid
+  in the context of a web-aware Spring ApplicationContext.<br>
+- application - Scopes a single bean definition to the lifecycle of a ServletContext.<br>
+- websocket - Scopes a single bean definition to the lifecycle of a WebSocket.<br>
 - **Filters**<br>
 <h3>Internet</h3>
 - **What are the things present in HTTP response?**<br>
