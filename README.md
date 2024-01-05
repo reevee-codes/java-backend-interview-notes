@@ -132,6 +132,9 @@
   `int variable = 123;`<br>
   Any variable that is assigned once and only once, is "effectively final".
 
+
+- **Hashcode/Equals**<br>
+
 - --------------------------------------------------------
 <h3>Spring</h3><br>
 
@@ -151,7 +154,23 @@
   a request is processed), CharacterEncodingFilter (to specify a character encoding for requests), and CorsFilter (to
   handle CORS pre-flight requests and to update the response) (CORS - http header that enables scripts running on a
   browser client to interact with resources from a different origin)
-
+- **Why we need Spring + Spring projects**<br>
+- **Dependency injection vs inversion**<br>
+- **Singleton bean vs singleton class**<br>
+- **When we take params from URI**<br>
+- **Path variables vs query parametres**<br>
+- **Annotations**<br>
+- **Post vs put vs patch**<br>
+- **REST design principles**<br>
+- **Idempotency**<br>
+- **Lifecycle of a bean**<br>
+- **How frontend talks with backend in depth and in different situations**<br>
+- **Managing long response from get**<br>
+- **Pagination**<br>
+- **When do we put things in body, and when in body**<br>
+- **OKTA**<br>
+- **tests: setup/execution/verification/cleaning**<br>
+- **do lambda/stream/hackerrank java/hackerrank problem solving + look for different exercises with solutions in java**<br>
 - --------------------------------------------------------
 <h3>Internet</h3>
 
