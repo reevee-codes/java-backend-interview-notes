@@ -2,6 +2,63 @@
 
 - ---------------------------------
 <h3>Core Java</h3>
+
+- **Changes in java 8**<br>
+- Interface Default and Static Methods: Starting with Java 8, interfaces can have static and default methods that,
+  despite being declared in an interface, have a defined behavior
+- Method References: Method reference can be used as a shorter and more readable alternative for a lambda expression
+  that only calls an existing method:
+  `List<String> messages = Arrays.asList("hello", "baeldung", "readers!");
+  messages.forEach(StringUtils::capitalize);`
+  StringUtils::capitalize is a method reference that refers to the capitalize method of the
+  StringUtils class. It is equivalent to the following lambda expression:
+  `messages.forEach(word -> StringUtils.capitalize(word));`<br>
+- Optional: Optional is a container object that may or may not contain a non-null value.
+  If a value is present, isPresent() will return true and get() will return the value.
+  Additional methods that depend on the presence or absence of a contained value are provided, such as orElse() (return
+  a default value if value not present) and ifPresent() (execute a block of code if the value is present).
+- Lambda Expressions
+- Streams - sequence of objects that supports methods which can be pipelined to produce the desired
+  result, we can perform operations like filtering, mapping, reducing, and sorting. Intermediate operations (filter(),
+  map(), distinct(), flatmap(allows you to transform each element of a stream into a new stream of elements),
+  distinct(), peek(), limit(), skip()) transform a
+  stream into another stream, while terminal operations mark the end of the stream and return the result (allmatch(),
+  collect(), foreach(), min(), max(), reduce()). In Java, streams are lazy because intermediate operations are not
+  evaluated until the terminal operation is invoked
+- **Changes in java 11**<br>
+- toArray()
+- String class new methods: isBlank(), repeat()
+- The Files class now has readString and writeString static methods that make it easier to read and write strings from
+  files
+- **Changes in java 17**<br>
+- **Changes in java 21 (newest LTS, september 2023)**<br>
+- virtual threads - light threads
+- Gen Z garbage collector - scalable, low latency, multithreading, very fast
+- structured concurrency
+- sequenced collection - access to first and last element of ordered collection
+- unnamed java class - differences from anonymous class
+- **Java memory model**<br>
+- Heap memory is used by all the parts of the application whereas stack memory is used only by one thread of execution.
+  Whenever an object is created, it's always stored in the Heap space and stack memory contains the reference to it
+- Stack Memory in Java is used for static memory allocation and the execution of a thread. It contains primitive values
+  that are specific to a method and references to objects referred from the method that are in a heap.
+- access to stack: Last-In-First-Out (LIFO) (like stack of plates)
+- Heap is divided into generations + string pool
+- The young generation is the place where all the new objects are created
+- When the young generation is filled - Minor GC garbage collection
+- Young gen: divided into Eden memory and two Survivor memory
+- Old Generation memory contains the objects that are long-lived and survived after many rounds of Minor GC
+- Old Generation Garbage Collection - Major GC (takes longer time)
+- String pool: To decrease the number of String objects created in the JVM, the String class keeps a pool of strings.
+  When we create
+  a string literal, the JVM first checks that literal in the String pool. If the literal is already present in the pool,
+  it returns a reference to the pooled instance.
+- creating String using new - it takes place in the Java heap, not in the String pool. New keyword creates a new
+  instance of
+  the string object, even if the same string already exists in the String pool
+- String Interning is a method of storing only one copy of each distinct String Value, which must be immutable. Applying
+  String. intern() on a couple of strings will ensure that all strings having the same contents share the same memory
+- in String, == compares place in memory, while equals() is overwritten this way that it compares inside of the String
 - **Access modifiers**<br>
   public: visible in class, subclass, package, global <br>
   protected: visible in class, subclass, package (protected from global) <br>
@@ -27,8 +84,10 @@
 
 - **Autoboxing Unboxing**<br>
 - **Anonymous classes**<br>
-- They enable you to declare and instantiate a class at the same time. They are like local classes except that they do not have a name. Use them if you need to use a local class only once.
-- While local classes are class declarations, anonymous classes are expressions, which means that you define the class in another expression.
+- They enable you to declare and instantiate a class at the same time. They are like local classes except that they do
+  not have a name. Use them if you need to use a local class only once.
+- While local classes are class declarations, anonymous classes are expressions, which means that you define the class
+  in another expression.
 - **Functional programming**<br>
 - avoiding changing-state and mutable data
 - more concise code
@@ -44,11 +103,14 @@
   than listing the steps to achieve it
 - **Lambda expressions**<br>
 - Lambda expressions let you express instances of single-method classes.
--  external variables used inside a lambda must be effectively final (Forcing the variable to be final avoids giving the impression that modifying the variable inside the lambda could actually modify the method parameter + concurrency issues)<br>
-   `Supplier<Integer> incrementer(int start) {`\
-   `return () -> start++;`\
-   `}`\
-   The lambda is capturing the value of start, meaning making a copy of it. Forcing the variable to be final avoids giving the impression that incrementing start inside the lambda could actually modify the start method parameter.
+- external variables used inside a lambda must be effectively final (Forcing the variable to be final avoids giving the
+  impression that modifying the variable inside the lambda could actually modify the method parameter + concurrency
+  issues)<br>
+  `Supplier<Integer> incrementer(int start) {`\
+  `return () -> start++;`\
+  `}`\
+  The lambda is capturing the value of start, meaning making a copy of it. Forcing the variable to be final avoids
+  giving the impression that incrementing start inside the lambda could actually modify the start method parameter.
 - **Streams**
 - **Optional**<br>
   may or may not contain a non-null value. If a value is present,
@@ -62,14 +124,17 @@
 - The class must be declared as final so that child classes can’t be created.
 - Data members in the class must be declared private so that direct access is not allowed.<br>
 - Data members in the class must be declared as final<br>
-- A parameterized constructor should initialize all the fields performing a deep copy so that data members can’t be modified with an object reference <br>
+- A parameterized constructor should initialize all the fields performing a deep copy so that data members can’t be
+  modified with an object reference <br>
   Deep Copy of objects should be performed in the getter methods to return a copy<br>
 - **Effectively final**<br>
-In Java 8, all variables are final by default.<br>
-`int variable = 123;`<br>
-Any variable that is assigned once and only once, is "effectively final".
+  In Java 8, all variables are final by default.<br>
+  `int variable = 123;`<br>
+  Any variable that is assigned once and only once, is "effectively final".
+
 - --------------------------------------------------------
 <h3>Spring</h3><br>
+
 - **Bean scopes**<br>
 - singleton - (Default) Scopes a single bean definition to a single object instance for each
   Spring IoC container<br>
@@ -80,37 +145,53 @@ Any variable that is assigned once and only once, is "effectively final".
 - application - Scopes a single bean definition to the lifecycle of a ServletContext.<br>
 - websocket - Scopes a single bean definition to the lifecycle of a WebSocket.<br>
 - **Filters**<br>
-- filters intercept and process incoming HTTP requests and outgoing HTTP responses. They are executed in a specific order, allowing each filter to perform its designated task
-- Some of the most used Spring filters are AbstractRequestLoggingFilter (to perform logging operations before and after a request is processed), CharacterEncodingFilter (to specify a character encoding for requests), and CorsFilter (to handle CORS pre-flight requests and to update the response) (CORS - http header that enables scripts running on a browser client to interact with resources from a different origin)
+- filters intercept and process incoming HTTP requests and outgoing HTTP responses. They are executed in a specific
+  order, allowing each filter to perform its designated task
+- Some of the most used Spring filters are AbstractRequestLoggingFilter (to perform logging operations before and after
+  a request is processed), CharacterEncodingFilter (to specify a character encoding for requests), and CorsFilter (to
+  handle CORS pre-flight requests and to update the response) (CORS - http header that enables scripts running on a
+  browser client to interact with resources from a different origin)
+
 - --------------------------------------------------------
 <h3>Internet</h3>
+
 - **Cookies**<br>
--  quite limited compared to some modern alternatives to storing data in the browser like localStorage or sessionStorage (4KB)
+- quite limited compared to some modern alternatives to storing data in the browser like localStorage or
+  sessionStorage (4KB)
 - your ally.com cookie will work on ally.com, ally.com/about, and the subdomain ally.com, but not axos.com
 - cookies are meant to be openly read and sent, so you should never store sensitive information like passwords in them
-- your cookies are sent with every request you make in the browser. This is very convenient, but has some serious security implications
+- your cookies are sent with every request you make in the browser. This is very convenient, but has some serious
+  security implications
 - **What are the things present in HTTP response?**<br>
--  HTTP response: contains a status line, a header ( a request message can use headers to indicate it's preferred media formats, while a response can use header to indicate the media format of the returned body), and a message body
+- HTTP response: contains a status line, a header ( a request message can use headers to indicate it's preferred media
+  formats, while a response can use header to indicate the media format of the returned body), and a message body
 - **How to get HTTPS certificate**<br>
-1. Create a private and public key pair, and prepare a Certificate Signing Request (CSR), including information about the organization and the public key. <br>
+
+1. Create a private and public key pair, and prepare a Certificate Signing Request (CSR), including information about
+   the organization and the public key. <br>
 2. Contact a certification authority and request an HTTPS certificate, based on the CSR.<br>
+
 - **How does HTTPS work?**<br>
+
 1. When you enter a URL, the server of that website sends its public key and a certificate to your browser.
 2. communication over secure SSL/TLS connection
 3. Even if the packets are intercepted, they will come across as nonsensical characters
-4. Decryption: The private key on the server-side is used for the decryption of the data that has been encrypted by the public key
+4. Decryption: The private key on the server-side is used for the decryption of the data that has been encrypted by the
+   public key
+
 - ---------------------------------
 <h3>HTTP Methods (http verbs)</h3>
 GET - retrieves data <br>
 HEAD - response like get but without response body<br>
-POST -  submits an entity to the specified resource<br>
-PUT -  replaces all current representations<br>
-DELETE -  deletes the specified resource<br>
-CONNECT -  establishes a tunnel to the server identified by the target resource<br>
+POST - submits an entity to the specified resource<br>
+PUT - replaces all current representations<br>
+DELETE - deletes the specified resource<br>
+CONNECT - establishes a tunnel to the server identified by the target resource<br>
 OPTIONS - describes the communication options for the target resource<br>
 TRACE - performs a message loop-back test along the path to the target resource<br>
 PATCH - applies partial modifications to a resource<br>
-POST vs PUT vs PATCH -  PUT is used for creating or replacing resources, POST is used for creating or appending data to resources, and PATCH is used for partially updating existing resources
+POST vs PUT vs PATCH - PUT is used for creating or replacing resources, POST is used for creating or appending data to
+resources, and PATCH is used for partially updating existing resources
 - ---------------------------------
 <h3>HTTP 1 vs HTTP 2 vs HTTP 3</h3>
 HTTP1 - web browser makes several parallel requests for page contents: HTML, images, style, JS<br>
@@ -120,14 +201,16 @@ HTTP3 - web browser makes one QUIC connection with requests for all page content
 <h3>HTTP 2.0</h3>
 HTTP/2 is binary instead of textual.
 HTTP/2 is fully multiplexed.<br>
-This means that HTTP/2 can send multiple requests for data in parallel over a single TCP connection. This is the most advanced feature of the HTTP/2 protocol
+This means that HTTP/2 can send multiple requests for data in parallel over a single TCP connection. This is the most
+advanced feature of the HTTP/2 protocol
 because it allows you to download web files via ASync mode from one server.
 Most modern browsers limit TCP connections to one server.
 - ---------------------------------
 <h3>HTTP 3.0</h3>
 Unlike previous versions which relied on theTCP, HTTP/3 uses QUIC, a transport protocol built on UDP.<br>
 The same request methods, status codes, and message fields, but encodes them and maintains session state differently<br>
-due to the protocol's adoption of QUIC, HTTP/3 has lower latency and loads more quickly in real-world usage when compared with previous versions: in some cases over 3× faster than with HTTP/1.1<br>
+due to the protocol's adoption of QUIC, HTTP/3 has lower latency and loads more quickly in real-world usage when
+compared with previous versions: in some cases over 3× faster than with HTTP/1.1<br>
 - ---------------------------------
 <h3>HTTP Codes</h3>
 Informational responses (100 – 199)<br>
@@ -157,26 +240,37 @@ Server error responses (500 – 599)<br>
 
 <b>Server error responses</b><br>
 500 Internal server error (server has encountered a situation it does not know how to handle)<br>
-501 Not Implemented (The request method is not supported by the server and cannot be handled. The only methods that servers are required to support (and therefore that must not return this code) are GET and HEAD.)<br>
-502 Bad Gateway (the server, while working as a gateway to get a response needed to handle the request, got an invalid response)<br>
+501 Not Implemented (The request method is not supported by the server and cannot be handled. The only methods that
+servers are required to support (and therefore that must not return this code) are GET and HEAD.)<br>
+502 Bad Gateway (the server, while working as a gateway to get a response needed to handle the request, got an invalid
+response)<br>
 503 Service Unavailable (the server is not ready to handle the request)<br>
 - ---------------------------------
 <h3>FTP</h3>
 The ftp command opens the user interface to the Internet's File Transfer Protocol.<br>
-This user interface, called the command interpreter, enables you to log in to a remote system and perform a variety of operations with its file system.<br>
-- opens 2 connections, one is used to send commands, other is for sending data. commands are “send,” “get,” “change directory,” and “transfer.”
+This user interface, called the command interpreter, enables you to log in to a remote system and perform a variety of
+operations with its file system.<br>
+
+- opens 2 connections, one is used to send commands, other is for sending data. commands are “send,” “get,” “change
+  directory,” and “transfer.”
 - uses three different modes: block, stream, and compressed. can perform perform large file size transfers.
 - allows you to send multiple files at once.
+
 - ---------------------------------
 <h3>SSH</h3>
-a network protocol that allows two devices to communicate and share data remotely over an unsecured network, like the Internet. The primary difference between Secure Shell Protocol and other login protocols is that SSH provides an encrypted connection.
+a network protocol that allows two devices to communicate and share data remotely over an unsecured network, like the
+Internet. The primary difference between Secure Shell Protocol and other login protocols is that SSH provides an
+encrypted connection.
 - ---------------------------------
 <h3>SFTP</h3>
 Extension of SSH.<br>
-FTP stands for File Transfer Protocol, while SFTP refers to Secure Shell (SSH) File Transfer Protocol. This gives you file transfers that are secured via SSH, which provides full access to shell accounts. A shell account is
-one that sits on a remote server.SFTP uses a tunneling method to transfer data. With the benefit of additional security, FTP, which is less secure, uses direct transfer.
+FTP stands for File Transfer Protocol, while SFTP refers to Secure Shell (SSH) File Transfer Protocol. This gives you
+file transfers that are secured via SSH, which provides full access to shell accounts. A shell account is
+one that sits on a remote server.SFTP uses a tunneling method to transfer data. With the benefit of additional security,
+FTP, which is less secure, uses direct transfer.
 
 - --------------------------------
+
 - **How to make class immutable?**<br>
 - **How to make class immutable?**<br>
 - **How to make class immutable?**<br>
@@ -189,11 +283,19 @@ one that sits on a remote server.SFTP uses a tunneling method to transfer data. 
   `}`<br>
   <h3>Spring Security</h3><br>
 - **Bearer vs JWT Token**<br>
-- Bearer tokens (access tokens) do not carry any specific information. Once validated, the server returns user information and permissions. require frequent communication with the server for each request. Can be easily revoked (advantage), but authorization server may face scalability issues when handling large number of bearer tokens
-- JWT tokens (JSON Web Tokens) carry all the necessary information within the token itself. This includes details such as the token's issuer, expiration time, permissions, and user profile, eliminating the need for frequent communication with the authorization server for validation.
+- Bearer tokens (access tokens) do not carry any specific information. Once validated, the server returns user
+  information and permissions. require frequent communication with the server for each request. Can be easily revoked (
+  advantage), but authorization server may face scalability issues when handling large number of bearer tokens
+- JWT tokens (JSON Web Tokens) carry all the necessary information within the token itself. This includes details such
+  as the token's issuer, expiration time, permissions, and user profile, eliminating the need for frequent communication
+  with the authorization server for validation.
 - **Hashing passwords**<br>
-- Bcrypt + salting (random piece of data is added to the password before it runs through the hashing algorithm, making it unique and harder to crack)
+- Bcrypt + salting (random piece of data is added to the password before it runs through the hashing algorithm, making
+  it unique and harder to crack)
 - To verify file signatures and certificates - SHA-256
-- pepper - while a salt is not secret (merely unique) and can be stored alongside the hashed output, a pepper is secret and must not be stored with the output
+- pepper - while a salt is not secret (merely unique) and can be stored alongside the hashed output, a pepper is secret
+  and must not be stored with the output
+
 - - --------------------------------------------------------
+
 - <h3>ACID</h3>
