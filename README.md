@@ -158,7 +158,23 @@
 - **Dependency injection vs inversion**<br>
 - **Singleton bean vs singleton class**<br>
 - **When we take params from URI**<br>
-- **Path variables vs query parametres**<br>
+- **Path variables vs query parameters**<br>
+-  path variables are used to identify a specific resource or resources, while query parameters are used to sort/filter those resources
+- Path variables separated by /, ex: https://api.github.com/users/:username/repos
+- Query parameters: are used to control what data is returned in endpoint resources, appear after question mark,  help control the set of items and properties in responses, and the order of the items returned.
+- decision to pass values in the body or the URI: GET - data in URI, post/put/patch use body, delete - in URI.
+- - **query parameters**<br>
+- You might see query parameters when:
+
+Filtering or Sorting Data: Query parameters can be used to filter or sort the data that is returned by the server1.
+Tracking: They are often used for tracking purposes, such as tracking the source of web traffic1.
+Pagination: When there is a lot of data to return, query parameters can be used to implement pagination1.
+You might not see query parameters when:
+
+Sensitive Data: If the data is sensitive, it might not be included in the URL for security reasons2. For example, you wouldn’t want to include a password as a query parameter.
+POST Requests: In a POST request, data is sent in the body of the request, not in the URL1.
+Clean URLs: Some websites prefer to use clean, easy-to-read URLs without query parameters3.
+
 - **Annotations**<br>
 - **Post vs put vs patch**<br>
 - **REST design principles**<br>
