@@ -214,6 +214,10 @@ Clean URLs: Some websites prefer to use clean, easy-to-read URLs without query p
 4. Decryption: The private key on the server-side is used for the decryption of the data that has been encrypted by the
    public key
 
+-**DOM**<br>
+Document Object Model, made of html/css, every element of HTTP is called node. Nodes can have ancestors and descendants. You can edit objects, for example: document.title = 'New!';<br>
+
+
 - ---------------------------------
 <h3>HTTP Methods (http verbs)</h3>
 GET - retrieves data <br>
