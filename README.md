@@ -4,30 +4,26 @@
 <h3>Core Java</h3>
 
 - **Changes in java 8**<br>
-- Interface Default and Static Methods: Starting with Java 8, interfaces can have static and default methods that,
-  despite being declared in an interface, have a defined behavior
-- Method References: Method reference can be used as a shorter and more readable alternative for a lambda expression
-  that only calls an existing method:
-  `List<String> messages = Arrays.asList("hello", "baeldung", "readers!");
-  messages.forEach(StringUtils::capitalize);`
-  StringUtils::capitalize is a method reference that refers to the capitalize method of the
-  StringUtils class. It is equivalent to the following lambda expression:
+- interfaces can have static and default methods that have a defined behavior
+- Method references:<br>
+  `messages.forEach(StringUtils::capitalize);`<br>
+  It is equivalent to the following lambda expression:
   `messages.forEach(word -> StringUtils.capitalize(word));`<br>
-- Optional: Optional is a container object that may or may not contain a non-null value.
-  If a value is present, isPresent() will return true and get() will return the value.
-  Additional methods that depend on the presence or absence of a contained value are provided, such as orElse() (return
-  a default value if value not present) and ifPresent() (execute a block of code if the value is present).
-- Lambda Expressions
-- Streams - sequence of objects that supports methods which can be pipelined to produce the desired
-  result, we can perform operations like filtering, mapping, reducing, and sorting. Intermediate operations (filter(),
-  map(), distinct(), flatmap(allows you to transform each element of a stream into a new stream of elements),
-  distinct(), peek(), limit(), skip()) transform a
-  stream into another stream, while terminal operations mark the end of the stream and return the result (allmatch(),
-  collect(), foreach(), min(), max(), reduce()). In Java, streams are lazy because intermediate operations are not
-  evaluated until the terminal operation is invoked
+- Optional: container object that may or may not contain a non-null value.<br>
+  isPresent() will return true if value is present, and get() will return the value.<br>
+  orElse() - return a default value if value not present<br>
+- Lambda expressions - any interface with a SAM(Single Abstract Method) is a functional interface, and its
+  implementation may be treated as lambda expressions
+- Streams - sequence of objects that supports methods which can be pipelined to produce the desired result, we can
+  perform operations like filtering, mapping, reducing, and sorting.<br>
+- Intermediate operations (filter(), map(), distinct(), flatmap(allows you to transform each element of a stream into a
+  new stream of elements), distinct(), peek(), limit(), skip()) transform a stream into another stream, while terminal
+  operations mark the end of the stream and return the result (allmatch(), collect(), foreach(), min(), max(),
+  reduce()). In Java, streams are lazy because intermediate operations are not evaluated until the terminal operation is
+  invoked
 - **Changes in java 11**<br>
-- toArray()
-- String class new methods: isBlank(), repeat()
+- toArray() - array out of collection
+- String new methods: isBlank(), repeat()
 - The Files class now has readString and writeString static methods that make it easier to read and write strings from
   files
 - **Changes in java 17**<br>
@@ -38,8 +34,9 @@
 - sequenced collection - access to first and last element of ordered collection
 - unnamed java class - differences from anonymous class
 - **Java memory model**<br>
-- Heap memory is used by all the parts of the application whereas stack memory is used only by one thread of execution.
-  Whenever an object is created, it's always stored in the Heap space and stack memory contains the reference to it
+- Heap - used by all the parts of the application<br>
+- stack memory is used only by one thread of execution<br>
+- Whenever an object is created, it's always stored in the Heap space and stack memory contains the reference to it<br>
 - Stack Memory in Java is used for static memory allocation and the execution of a thread. It contains primitive values
   that are specific to a method and references to objects referred from the method that are in a heap.
 - access to stack: Last-In-First-Out (LIFO) (like stack of plates)
@@ -50,26 +47,31 @@
 - Old Generation memory contains the objects that are long-lived and survived after many rounds of Minor GC
 - Old Generation Garbage Collection - Major GC (takes longer time)
 - String pool: To decrease the number of String objects created in the JVM, the String class keeps a pool of strings.
-  When we create
-  a string literal, the JVM first checks that literal in the String pool. If the literal is already present in the pool,
-  it returns a reference to the pooled instance.
+  When we create a string literal, the JVM first checks that literal in the String pool. If the literal is already
+  present in the pool, it returns a ref   erence to the pooled instance.
 - creating String using new - it takes place in the Java heap, not in the String pool. New keyword creates a new
   instance of
   the string object, even if the same string already exists in the String pool
 - String Interning is a method of storing only one copy of each distinct String Value, which must be immutable. Applying
   String. intern() on a couple of strings will ensure that all strings having the same contents share the same memory
-- in String, == compares place in memory, while equals() is overwritten this way that it compares inside of the String
+- in String, == compares place in memory, while equals() is overwritten that it compares inside of the String
 - **Access modifiers**<br>
   public: visible in class, subclass, package, global <br>
   protected: visible in class, subclass, package (protected from global) <br>
   default: visible in class, package <br>
   private: visible in class <br>
 - **Exceptions**
-  A checked exception is caught at compile time whereas a runtime or unchecked exception is checked at runtime.<br>
+  A checked exception is caught at compile time, runtime/unchecked exception is checked at runtime.<br>
   Checked: IOException, SQLException, FileNotFoundException, ClassNotFoundException <br>
   Unchecked: NPE, ArrayIndexOutOfBonds, ArithmeticException
-- **OOP concepts**
-- inheritance, encapsulation, polymorphism, and abstraction
+- **OOP concepts (AIEP)**
+- abstraction, inheritance, encapsulation, polymorphism
+- **Anonymous class**<br>
+- They enable you to declare and instantiate a class at the same time. They are like local classes except that they do
+  not have a name. Use them if you need to use a local class only once.
+- *Anonymous class vs Abstract class*
+- Local class: Use it if you need to create more than one instance of a class, access its constructor. Anonymous class: Use it if you need to declare fields or additional methods.
+- *Abstract class*
 - **interface vs abstract class**
   Abstract class is a class with partial implementation while interface is a contract with no implementation.
   Abstract class can have both abstract and non-abstract methods while interface can only have abstract methods.
@@ -83,9 +85,7 @@
 - **Generics**<br>
 
 - **Autoboxing Unboxing**<br>
-- **Anonymous classes**<br>
-- They enable you to declare and instantiate a class at the same time. They are like local classes except that they do
-  not have a name. Use them if you need to use a local class only once.
+
 - While local classes are class declarations, anonymous classes are expressions, which means that you define the class
   in another expression.
 - **Functional programming**<br>
@@ -111,6 +111,16 @@
   `}`\
   The lambda is capturing the value of start, meaning making a copy of it. Forcing the variable to be final avoids
   giving the impression that incrementing start inside the lambda could actually modify the start method parameter.
+- **Functional Interfaces**
+- Consumer - accepts one, returns nothing
+  Predicate - accepts one, returns boolean
+  Function - takes value returns value
+  Supplier - no input, returns 1 output
+
+Multiple:
+Consumer -> Bi-Consumer
+Predicate -> Bi-Predicate
+Function -> Bi-Function, Unary Operator, Binary Operator
 - **Streams**
 - **Optional**<br>
   may or may not contain a non-null value. If a value is present,
@@ -132,12 +142,34 @@
   `int variable = 123;`<br>
   Any variable that is assigned once and only once, is "effectively final".
 
-
+- **what objects can be a key in hashmap**<br>
+immutable
+- **the difference between compile-time and runtime in Java**
+- Compile-time is when the Java compiler does error detection (syntax), type-checking, or semantic errors. If there’s a compile-time error, the compiler will not generate the .class file and will display the error in the console. On the other hand, runtime errors occur when your program is being executed. These errors are often logic errors that the compiler can’t catch.
+- Performance: Compile-time operations are done once and don’t need to be repeated, which can lead to more efficient code. Runtime operations happen every time the code is executed, which could impact performance if the operation is complex or time-consuming.
+- Flexibility and Polymorphism: Some programming decisions can’t be made at compile time and must be deferred to runtime. For example, in runtime polymorphism (OVERRIDING), the Java Virtual Machine (JVM) determines which method to call at runtime. This allows for more flexible and dynamic code.
+- Code Maintenance and Debugging:if you know a certain method is determined at compile time, you can look for issues in your code before it’s run4
+- **compile time vs runtime polymorphism in java**<br>
+- compile time: overloading (more  than 1 method with the same name in the class, but with different parameters)
+- runtime: overriding, when child class overrides method from parent class, JVM determines which method to run at runtime
 - **Hashcode/Equals**<br>
+- equals(): This method is used to compare two objects for equality. By default, it compares the memory locations of objects. If you want to compare objects based on their state (values), you need to override the equals() method in your class. The equals() method must be:
+Reflexive: An object must equal itself.
+Symmetric: x.equals(y) must return the same result as y.equals(x).
+Transitive: If x.equals(y) and y.equals(z), then also x.equals(z).
+Consistent: The value of equals() should change only if a property that is contained in equals() changes21.
+For any non-null object x, x.equals(null) should return false.
 
+hashCode(): This method returns an integer that represents the object’s memory address by default. When you store objects in a hash-based collection like HashSet, HashMap, etc., hashCode() is used to determine where to store the object. If two objects are equal according to the equals(Object) method, calling hashCode() on each of the two objects must produce the same integer result.
+
+You must override hashCode() in every class that overrides equals().
+it's ok to override only hashCode() without overriding equals() as well - in practice, it’s rare to override hashCode() without also overriding equals(), because the default equals() method in the Object class only checks for reference equality, which might not be appropriate for your class
+- when you need to use your object in the hashing based collection, you must override both equals() and hashCode()
 - --------------------------------------------------------
 <h3>Spring</h3><br>
-
+**@SpringBootApplication**<br>
+- includes @SpringBootConfiguration(, we can now use Dependency Injection annotations like @Autowired or @Inject.), @EnableAutoConfiguration(auto-create beans from the found components.) and @ComponentScan (specify the packages that we want to be scanned.
+When you use @ComponentScan without arguments, it tells Spring to scan the current package and all of its sub-packages)
 - **Bean scopes**<br>
 - singleton - (Default) Scopes a single bean definition to a single object instance for each
   Spring IoC container<br>
@@ -159,11 +191,17 @@
 - **Singleton bean vs singleton class**<br>
 - **When we take params from URI**<br>
 - **Path variables vs query parameters**<br>
--  path variables are used to identify a specific resource or resources, while query parameters are used to sort/filter those resources
-- Path variables separated by /, ex: https://api.github.com/users/:username/repos
-- Query parameters: are used to control what data is returned in endpoint resources, appear after question mark,  help control the set of items and properties in responses, and the order of the items returned.
+- a rule of thumb is 'path params = resource identification' and 'query params = resource sorting'.
+- path variables are used to identify a specific resource or resources, while query parameters are used to sort/filter
+  those resources, ex. <br>
+  GET /cars?color=blue&brand=ferrari<br>
+- Path variables separated by /, ex: https://api.github.com/users/:username/repos, come before the question mark sign
+- Query parameters: are used to control what data is returned in endpoint resources, appear after question mark, help
+  control the set of items and properties in responses, and the order of the items returned.
 - decision to pass values in the body or the URI: GET - data in URI, post/put/patch use body, delete - in URI.
-- - **query parameters**<br>
+-
+    - **query parameters**<br>
+- after ?
 - You might see query parameters when:
 
 Filtering or Sorting Data: Query parameters can be used to filter or sort the data that is returned by the server1.
@@ -171,13 +209,17 @@ Tracking: They are often used for tracking purposes, such as tracking the source
 Pagination: When there is a lot of data to return, query parameters can be used to implement pagination1.
 You might not see query parameters when:
 
-Sensitive Data: If the data is sensitive, it might not be included in the URL for security reasons2. For example, you wouldn’t want to include a password as a query parameter.
+Sensitive Data: If the data is sensitive, it might not be included in the URL for security reasons2. For example, you
+wouldn’t want to include a password as a query parameter.
 POST Requests: In a POST request, data is sent in the body of the request, not in the URL1.
 Clean URLs: Some websites prefer to use clean, easy-to-read URLs without query parameters3.
 
+- **RESTful APIs**<br>
 - **Annotations**<br>
 - **Post vs put vs patch**<br>
 - **REST design principles**<br>
+- accepts and responds with JSON
+- Use nouns instead of verbs in endpoint paths
 - **Idempotency**<br>
 - **Lifecycle of a bean**<br>
 - **How frontend talks with backend in depth and in different situations**<br>
@@ -186,7 +228,9 @@ Clean URLs: Some websites prefer to use clean, easy-to-read URLs without query p
 - **When do we put things in body, and when in body**<br>
 - **OKTA**<br>
 - **tests: setup/execution/verification/cleaning**<br>
-- **do lambda/stream/hackerrank java/hackerrank problem solving + look for different exercises with solutions in java**<br>
+- **do lambda/stream/hackerrank java/hackerrank problem solving + look for different exercises with solutions in java
+  **<br>
+
 - --------------------------------------------------------
 <h3>Internet</h3>
 
@@ -215,20 +259,21 @@ Clean URLs: Some websites prefer to use clean, easy-to-read URLs without query p
    public key
 
 -**DOM**<br>
-Document Object Model, made of html/css, every element of HTTP is called node. Nodes can have ancestors and descendants. You can edit objects, for example: document.title = 'New!';<br>
+Document Object Model, made of html/css, every element of HTTP is called node. Nodes can have ancestors and descendants.
+You can edit objects, for example: document.title = 'New!';<br>
 
 
 - ---------------------------------
 <h3>HTTP Methods (http verbs)</h3>
-GET - retrieves data <br>
+GET - Fetches the state of a resource without altering the system <br>
 HEAD - response like get but without response body<br>
 POST - submits an entity to the specified resource<br>
-PUT - replaces all current representations<br>
+PUT -  Replaces an existing resource, overwriting whatever else (if anything) is already there<br>
 DELETE - deletes the specified resource<br>
 CONNECT - establishes a tunnel to the server identified by the target resource<br>
 OPTIONS - describes the communication options for the target resource<br>
 TRACE - performs a message loop-back test along the path to the target resource<br>
-PATCH - applies partial modifications to a resource<br>
+PATCH - Alters an existing resource (partially rather than creating a new resource)<br>
 POST vs PUT vs PATCH - PUT is used for creating or replacing resources, POST is used for creating or appending data to
 resources, and PATCH is used for partially updating existing resources
 - ---------------------------------
@@ -338,3 +383,9 @@ FTP, which is less secure, uses direct transfer.
 - - --------------------------------------------------------
 
 - <h3>ACID</h3>
+
+- - --------------------------------------------------------
+
+- <h3>MISCELLANEOUS</h3>
+- MKE - Mirantis Kubernetes Engine - UI to manage and monitor your Kubernetes and/or Swarm cluster instances
+- Docker Swarm: container orchestration tool, manage multiple containers deployed across multiple host machines
