@@ -3,7 +3,7 @@
 - ---------------------------------
 <h3>Core Java</h3>
 
-- **Changes in java 8**<br>
+- **Changes in java 8: **<br>
 - interfaces can have static and default methods that have a defined behavior
 - Method references:<br>
   `messages.forEach(StringUtils::capitalize);`<br>
@@ -21,19 +21,18 @@
   operations mark the end of the stream and return the result (allmatch(), collect(), foreach(), min(), max(),
   reduce()). In Java, streams are lazy because intermediate operations are not evaluated until the terminal operation is
   invoked
-- **Changes in java 11**<br>
+- **Changes in java 11: **<br>
 - toArray() - array out of collection
 - String new methods: isBlank(), repeat()
 - The Files class now has readString and writeString static methods that make it easier to read and write strings from
   files
-- **Changes in java 17**<br>
-- **Changes in java 21 (newest LTS, september 2023)**<br>
+- **Changes in java 21 (newest LTS, september 2023, next LTS version will be Java 25 in September 2025): **<br>
 - virtual threads - light threads
 - Gen Z garbage collector - scalable, low latency, multithreading, very fast
 - structured concurrency
 - sequenced collection - access to first and last element of ordered collection
 - unnamed java class - differences from anonymous class
-- **Java memory model**<br>
+- **Java memory model: **<br>
 - Heap - used by all the parts of the application<br>
 - stack memory is used only by one thread of execution<br>
 - Whenever an object is created, it's always stored in the Heap space and stack memory contains the reference to it<br>
@@ -55,10 +54,10 @@
 - String Interning is a method of storing only one copy of each distinct String Value, which must be immutable. Applying
   String. intern() on a couple of strings will ensure that all strings having the same contents share the same memory
 - in String, == compares place in memory, while equals() is overwritten that it compares inside of the String
-- **Access modifiers**<br>
+- **Access modifiers: (from most wide to least wide: private, no keyword, protected, public)**<br>
   public: visible in class, subclass, package, global <br>
   protected: visible in class, subclass, package (protected from global) <br>
-  default: visible in class, package <br>
+  default (no keyword) : visible in class, package <br>
   private: visible in class <br>
 - **Exceptions**
   A checked exception is caught at compile time, runtime/unchecked exception is checked at runtime.<br>
@@ -389,3 +388,4 @@ FTP, which is less secure, uses direct transfer.
 - <h3>MISCELLANEOUS</h3>
 - MKE - Mirantis Kubernetes Engine - UI to manage and monitor your Kubernetes and/or Swarm cluster instances
 - Docker Swarm: container orchestration tool, manage multiple containers deployed across multiple host machines
+- @UtilityClass - (annotation from Lombok) class becomes final (cannot inherit), constructor becomes private and throws exception (cannot create object), all methods and fields become static (even if you do not add static manually).
